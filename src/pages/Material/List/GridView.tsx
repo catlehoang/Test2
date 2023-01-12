@@ -1,9 +1,8 @@
-import { Button, DataTable, Badge } from '@shopify/polaris';
+import { Button, DataTable } from '@shopify/polaris';
 import { useMemo } from 'react';
 
 type Props = {
 	data?: any[];
-	onDelete: (i: number) => void;
 };
 
 interface Column {
@@ -15,26 +14,17 @@ interface Column {
 
 const columns: Column[] = [
 	{ type: 'numeric', heading: '#', field: 'id' },
-	{ type: 'text', heading: 'Product', field: 'name' },
+	{ type: 'text', heading: 'Material', field: 'name' },
 	{ type: 'text', heading: 'Category', field: 'category' },
-	{ type: 'text', heading: 'Description', field: 'description' },
-	{ type: 'text', heading: 'Status', field: 'status' },
-	{ type: 'text', heading: 'Action', field: 'action' },
+	{ type: 'numeric', heading: 'Quantity', field: 'quantity' },
 ];
-const GridView = ({ data, onDelete }: Props) => {
+const GridView = ({ data }: Props) => {
 	const rows = useMemo(
 		() =>
-			(data || []).map((item, index) =>
+			(data || []).map((item) =>
 				columns.map((column) => {
-					if (column.field === 'status') {
-						return <Badge status={item.status === 'available' ? 'success' : 'warning'}>{item.status}</Badge>
-					}
-					if (column.field === 'action') {
-						return (
-							<Button destructive onClick={() => onDelete(index)}>
-								Delete
-							</Button>
-						);
+					if (column.field === 'quantity') {
+						return item.quantity + ' item(s)';
 					}
 					return item[column.field as keyof typeof item] as string;
 				})
