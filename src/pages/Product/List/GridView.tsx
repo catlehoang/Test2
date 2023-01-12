@@ -1,4 +1,4 @@
-import { DataTable } from '@shopify/polaris';
+import { Button, DataTable } from '@shopify/polaris';
 import { useMemo } from 'react';
 
 type Props = {
@@ -17,6 +17,7 @@ const columns: Column[] = [
 	{ type: 'text', heading: 'Product', field: 'name' },
 	{ type: 'text', heading: 'Category', field: 'category' },
 	{ type: 'text', heading: 'Description', field: 'description' },
+	{ type: 'text', heading: 'Action', field: 'action' },
 ];
 const GridView = ({ data }: Props) => {
 	const rows = useMemo(
@@ -37,7 +38,7 @@ const GridView = ({ data }: Props) => {
 					headings={columns.map((item) => item.heading)}
 					rows={rows}
 					sortable={columns.map((item) => item.sortable || false)}
-				/>
+				/>		
 			</div>
 			{/* {((data?.page || 0) > 1 || (data?.records || []).length >= listLimit) && (
 				<div className="flex justify-end mt-3">
