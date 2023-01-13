@@ -1,4 +1,4 @@
-import { Button, DataTable, Badge } from '@shopify/polaris';
+import { Button, DataTable, Badge, Link } from '@shopify/polaris';
 import { useMemo } from 'react';
 
 type Props = {
@@ -13,11 +13,10 @@ interface Column {
 }
 
 const columns: Column[] = [
-	{ type: 'text', heading: 'Client name', field: 'name' },
+	{ type: 'text', heading: 'Client name', field: 'client_name' },
 	{ type: 'text', heading: 'Date ordered', field: 'date' }, //change type to date
 	{ type: 'text', heading: 'Status', field: 'status' },
-    { type: 'text', heading: 'Action', field: 'action' },
-	
+	{ type: 'text', heading: 'Action', field: 'action' },
 ];
 
 const GridView = ({ data}: Props) => {
@@ -28,12 +27,8 @@ const GridView = ({ data}: Props) => {
 					if (column.field === 'status') {
 						return <Badge status={item.status === 'available' ? 'success' : 'warning'}>{item.status}</Badge>
 					}
-					if (column.field === 'action') {
-						return (
-							<Button>
-								View
-							</Button>
-						);
+					if (column.field === 'client_name') {
+						return <Link url='/order/update'>{item.client_name}</Link>
 					}
 					return item[column.field as keyof typeof item] as string;
 				})

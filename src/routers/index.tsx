@@ -7,6 +7,7 @@ import ProductPage from 'pages/Product/List';
 import CreateProductPage from 'pages/Product/Create';
 import MaterialPage from 'pages/Material/List';
 import OrderPage from 'pages/Order/List';
+import UpdateOrderPage from 'pages/Order/Edit';
 export const Routers = () => {
 	const router = createBrowserRouter([
 		{
@@ -33,7 +34,10 @@ export const Routers = () => {
 					path: 'order',
 					element: <OrderPage />,
 				},
-
+				{
+					path: 'order/update',
+					element: <UpdateOrderPage />,
+				},
 			],
 		},
 		{
