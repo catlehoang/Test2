@@ -6,8 +6,7 @@ import DashboardPage from 'pages/Dashboard';
 import ProductPage from 'pages/Product/List';
 import CreateProductPage from 'pages/Product/Create';
 import MaterialPage from 'pages/Material/List';
-import UpdateOrderPage from 'pages/Order/Edit';
-
+import OrderPage from 'pages/Order/List';
 export const Routers = () => {
 	const router = createBrowserRouter([
 		{
@@ -31,9 +30,10 @@ export const Routers = () => {
 					element: <MaterialPage />,
 				},
 				{
-					path: 'order/update',
-					element: <UpdateOrderPage />,
+					path: 'order',
+					element: <OrderPage />,
 				},
+
 			],
 		},
 		{

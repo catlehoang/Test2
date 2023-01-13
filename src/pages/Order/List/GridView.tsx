@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 
 type Props = {
 	data?: any[];
-	//onDelete: (i: number) => void;
 };
 
 interface Column {
@@ -18,6 +17,7 @@ const columns: Column[] = [
 	{ type: 'text', heading: 'Date ordered', field: 'date' }, //change type to date
 	{ type: 'text', heading: 'Status', field: 'status' },
     { type: 'text', heading: 'Action', field: 'action' },
+	
 ];
 
 const GridView = ({ data}: Props) => {
