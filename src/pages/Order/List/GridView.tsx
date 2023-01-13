@@ -16,7 +16,6 @@ const columns: Column[] = [
 	{ type: 'text', heading: 'Client name', field: 'client_name' },
 	{ type: 'text', heading: 'Date ordered', field: 'date' }, //change type to date
 	{ type: 'text', heading: 'Status', field: 'status' },
-	{ type: 'text', heading: 'Action', field: 'action' },
 ];
 
 const GridView = ({ data}: Props) => {
@@ -25,7 +24,7 @@ const GridView = ({ data}: Props) => {
 			(data || []).map((item, index) =>
 				columns.map((column) => {
 					if (column.field === 'status') {
-						return <Badge status={item.status === 'available' ? 'success' : 'warning'}>{item.status}</Badge>
+						return <Badge status={item.status === 'in process' ? 'success' : 'warning'}>{item.status}</Badge>
 					}
 					if (column.field === 'client_name') {
 						return <Link url='/order/update'>{item.client_name}</Link>
