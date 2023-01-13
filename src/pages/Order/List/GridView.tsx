@@ -28,6 +28,13 @@ const GridView = ({ data}: Props) => {
 					if (column.field === 'status') {
 						return <Badge status={item.status === 'available' ? 'success' : 'warning'}>{item.status}</Badge>
 					}
+					if (column.field === 'action') {
+						return (
+							<Button>
+								View
+							</Button>
+						);
+					}
 					return item[column.field as keyof typeof item] as string;
 				})
 			),

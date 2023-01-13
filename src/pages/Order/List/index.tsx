@@ -20,7 +20,7 @@ const OrderPage = () => {
 	}, []);
 
 	return (
-		<Page fullWidth title="Order List" primaryAction={{ content: 'View', url: '/order/edit' }} compactTitle>
+		<Page fullWidth title="Order List" compactTitle>
 			<GridView data={data} />
 			<Loading loading={loading} />
 		</Page>

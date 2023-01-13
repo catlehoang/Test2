@@ -8,5 +8,5 @@ export const getList = async () => {
 		return res.data;
 	});
 };
-//product.json?key=3446ea90
 //product_cat.json?key=db4eee30
+//product.json?key=3446ea90

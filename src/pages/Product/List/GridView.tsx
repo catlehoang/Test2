@@ -16,6 +16,7 @@ interface Column {
 const columns: Column[] = [
 	{ type: 'numeric', heading: '#', field: 'id' },
 	{ type: 'text', heading: 'Product', field: 'name' },
+	//{ type: 'text', heading: 'Description', field: 'description'},
 	{ type: 'text', heading: 'Status', field: 'status' },
 	{ type: 'text', heading: 'Action', field: 'action' },
 ];
