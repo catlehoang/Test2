@@ -1,15 +1,12 @@
 import { Button, Filters, Page } from '@shopify/polaris';
 import { useCallback, useEffect, useState } from 'react';
 
-import { getList } from 'apis/product';
+import { getList } from 'apis/material';
 import GridView from './GridView';
 import Loading from 'components/Loading';
-import Popup from 'components/Popup';
 
-const ProductPage = () => {
-	const [index, setIndex] = useState<number>();
+const MaterialPage = () => {
 	const [data, setData] = useState<any[]>();
-	const [active, setActive] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [queryValue, setQueryValue] = useState('');
 
@@ -22,20 +19,6 @@ const ProductPage = () => {
 		fetchData().catch(console.error);
 	}, []);
 
-	const onSelectedDelete = (i: number) => {
-		setIndex(i);
-		setActive(true);
-	};
-
-	const onDelete = () => {
-		const tempData = data?.map((item) => {
-			return item;
-		});
-		index && tempData?.splice(index, 1);
-		setData(tempData);
-		setActive(false);
-	};
-
 	const handleFiltersQueryChange = useCallback((value: string) => {
 		setQueryValue(value);
 	}, []);
@@ -47,7 +30,7 @@ const ProductPage = () => {
 	};
 
 	return (
-		<Page fullWidth title="Products" primaryAction={{ content: 'Add new', url: '/product/create' }} compactTitle>
+		<Page fullWidth title="Materials" compactTitle>
 			<div className="mb-5">
 				<Filters
 					queryPlaceholder="Search by name"
@@ -63,16 +46,9 @@ const ProductPage = () => {
 				</Filters>
 			</div>
 
-			<GridView data={data} onDelete={onSelectedDelete} />
+			<GridView data={data} />
 			<Loading loading={loading} />
-			<Popup
-				title="Delete this product"
-				body="This action can't undo"
-				active={active}
-				handleChange={() => setActive(false)}
-				handleConfirm={onDelete}
-			/>
 		</Page>
 	);
 };
-export default ProductPage;
+export default MaterialPage;

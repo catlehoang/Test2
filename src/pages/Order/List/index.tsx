@@ -1,12 +1,11 @@
 import { Button, Filters, Page } from '@shopify/polaris';
 import { useCallback, useEffect, useState } from 'react';
 
-import { getList } from 'apis/product';
-import GridView from './GridView';
+import { getList } from 'apis/order';
+import GridView from 'pages/Order/List/GridView';
 import Loading from 'components/Loading';
-import Popup from 'components/Popup';
 
-const ProductPage = () => {
+const OrderPage = () => {
 	const [index, setIndex] = useState<number>();
 	const [data, setData] = useState<any[]>();
 	const [active, setActive] = useState(false);
@@ -22,32 +21,18 @@ const ProductPage = () => {
 		fetchData().catch(console.error);
 	}, []);
 
-	const onSelectedDelete = (i: number) => {
-		setIndex(i);
-		setActive(true);
-	};
-
-	const onDelete = () => {
-		const tempData = data?.map((item) => {
-			return item;
-		});
-		index && tempData?.splice(index, 1);
-		setData(tempData);
-		setActive(false);
-	};
-
 	const handleFiltersQueryChange = useCallback((value: string) => {
 		setQueryValue(value);
 	}, []);
 
 	const handleOnSearch = () => {
 		let newArr = data && [...data];
-		newArr = newArr && newArr.filter((x) => x.name === queryValue);
+		newArr = newArr && newArr.filter((x) => x.client_name === queryValue);
 		setData(newArr);
 	};
 
 	return (
-		<Page fullWidth title="Products" primaryAction={{ content: 'Add new', url: '/product/create' }} compactTitle>
+		<Page fullWidth title="Order List" compactTitle>
 			<div className="mb-5">
 				<Filters
 					queryPlaceholder="Search by name"
@@ -63,16 +48,10 @@ const ProductPage = () => {
 				</Filters>
 			</div>
 
-			<GridView data={data} onDelete={onSelectedDelete} />
+			<GridView data={data} />
 			<Loading loading={loading} />
-			<Popup
-				title="Delete this product"
-				body="This action can't undo"
-				active={active}
-				handleChange={() => setActive(false)}
-				handleConfirm={onDelete}
-			/>
 		</Page>
 	);
 };
-export default ProductPage;
+
+export default OrderPage;
